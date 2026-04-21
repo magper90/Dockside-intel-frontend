@@ -753,6 +753,19 @@ function parseRSSXML(xmlText, feedLabel, feedCountry){
   return articles;
 }
 
+// Fetch one RSS feed directly from browser using allorigins CORS proxy
+async function fetchOneFeed(feedInfo){
+  try{
+    // allorigins.win is a free CORS proxy that works for Google News RSS
+    var proxyUrl = 'https://api.allorigins.win/get?url='+encodeURIComponent(feedInfo.url);
+    var resp = await fetch(proxyUrl);
+    if(!resp.ok) return [];
+    var data = await resp.json();
+    if(!data.contents) return [];
+    return parseRSSXML(data.contents, feedInfo.label, feedInfo.country);
+  }catch(e){ return []; }
+}
+
 async function runScan(){
   var anthropicKey=gv('anthropicKey');
   showB(null,'');
@@ -764,25 +777,20 @@ async function runScan(){
     updateLoadingMsg('Fetching '+feedUrls.length+' feeds...');
     setScanProgress(10);
 
-    // STEP 1: Backend fetches all RSS feeds in parallel (avoids CORS)
-    var fetchResp = await fetch(API_BASE+'/api/fetch-feeds', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ feeds: feedUrls })
-    });
-    if(!fetchResp.ok){ var ferr=await fetchResp.text(); throw new Error('Fetch failed '+fetchResp.status+': '+ferr.slice(0,80)); }
-    var fetchData = await fetchResp.json();
-    var allArticles = fetchData.articles || [];
+    // STEP 1: Browser fetches all feeds in parallel via CORS proxy
+    var results = await Promise.all(feedUrls.map(function(f){ return fetchOneFeed(f); }));
+    var allArticles = [];
+    results.forEach(function(arr){ allArticles = allArticles.concat(arr); });
 
     setScanProgress(60);
-    updateLoadingMsg('Fetched '+allArticles.length+' articles from '+fetchData.meta.success+' feeds — classifying...');
+    updateLoadingMsg('Fetched '+allArticles.length+' articles — classifying...');
 
     if(!allArticles.length){
-      showB('info','No articles returned. '+fetchData.meta.failed+' feeds failed. Backend may need a moment — try again in 30 seconds.');
+      showB('info','No articles fetched. The CORS proxy (allorigins.win) may be slow — try again in 10 seconds.');
       setScanLoading(false); showEmptyState(); return;
     }
 
-    // STEP 2: Classify articles
+    // STEP 2: Send to backend for classification only
     var headers = {'Content-Type':'application/json'};
     if(anthropicKey) headers['x-anthropic-key'] = anthropicKey;
 

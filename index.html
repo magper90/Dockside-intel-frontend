@@ -756,13 +756,12 @@ function parseRSSXML(xmlText, feedLabel, feedCountry){
 // Fetch one RSS feed directly from browser using allorigins CORS proxy
 async function fetchOneFeed(feedInfo){
   try{
-    // allorigins.win is a free CORS proxy that works for Google News RSS
-    var proxyUrl = 'https://api.allorigins.win/get?url='+encodeURIComponent(feedInfo.url);
+    // corsproxy.io — reliable CORS proxy for Google News RSS
+    var proxyUrl = 'https://corsproxy.io/?url='+encodeURIComponent(feedInfo.url);
     var resp = await fetch(proxyUrl);
     if(!resp.ok) return [];
-    var data = await resp.json();
-    if(!data.contents) return [];
-    return parseRSSXML(data.contents, feedInfo.label, feedInfo.country);
+    var xml = await resp.text();
+    return parseRSSXML(xml, feedInfo.label, feedInfo.country);
   }catch(e){ return []; }
 }
 
@@ -786,7 +785,7 @@ async function runScan(){
     updateLoadingMsg('Fetched '+allArticles.length+' articles — classifying...');
 
     if(!allArticles.length){
-      showB('info','No articles fetched. The CORS proxy (allorigins.win) may be slow — try again in 10 seconds.');
+      showB('info','No articles fetched. Try again in 10 seconds.');
       setScanLoading(false); showEmptyState(); return;
     }
 

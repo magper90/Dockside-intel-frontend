@@ -774,36 +774,27 @@ async function runScan(){
   showLoadingState('Building queries for '+activeCompanies.size+' companies...');
 
   try{
-    var feedUrls = buildFeedUrls();
-    updateLoadingMsg('Fetching '+feedUrls.length+' feeds...');
-    setScanProgress(10);
-
-    // STEP 1: Browser fetches all feeds in parallel via CORS proxy
-    var results = await Promise.all(feedUrls.map(function(f){ return fetchFeedBrowser(f); }));
-    var allArticles = [];
-    results.forEach(function(arr){ allArticles = allArticles.concat(arr); });
-
-    setScanProgress(60);
-    updateLoadingMsg('Fetched '+allArticles.length+' articles — classifying...');
-
-    if(!allArticles.length){
-      showB('info','No articles fetched. Try again in 10 seconds.');
+    if(!anthropicKey){
+      showB('info','Add your Anthropic API key in Settings to enable live scanning.');
       setScanLoading(false); showEmptyState(); return;
     }
 
-    // STEP 2: Send to backend for classification only
-    var headers = {'Content-Type':'application/json'};
-    if(anthropicKey) headers['x-anthropic-key'] = anthropicKey;
+    updateLoadingMsg('Searching Nordic logistics news via AI...');
+    setScanProgress(20);
 
-    var resp = await fetch(API_BASE+'/api/classify', {
+    // Single call — backend uses Anthropic web search to find + classify
+    var headers = {'Content-Type':'application/json', 'x-anthropic-key': anthropicKey};
+
+    var resp = await fetch(API_BASE+'/api/scan', {
       method:'POST', headers:headers,
-      body: JSON.stringify({ articles:allArticles, tenants:tenants, prospects:prospects })
+      body: JSON.stringify({ tenants:tenants, prospects:prospects })
     });
-    if(!resp.ok){ var err=await resp.text(); throw new Error('Classify failed '+resp.status+': '+err.slice(0,100)); }
+    if(!resp.ok){ var err=await resp.text(); throw new Error('Scan failed '+resp.status+': '+err.slice(0,100)); }
 
     setScanProgress(90);
     var data = await resp.json();
     var signals = data.signals || [];
+    updateLoadingMsg('Found '+signals.length+' signals...');
 
     if(!signals.length){
       showB('info','No signals found. '+allArticles.length+' articles fetched but none matched Nordic logistics criteria. Try activating more company sectors.');

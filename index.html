@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dockside Intel</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap');
 :root{
   --bg:#0a0c10;--surface:#111318;--surface2:#181c24;--border:#1e2330;
   --accent:#00d4aa;--accent2:#0088ff;--danger:#ff3355;--warn:#ff6b35;
@@ -15,12 +15,15 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh;}
-.header{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(10,12,16,.96);backdrop-filter:blur(12px);}
-.logo{display:flex;align-items:center;gap:11px;}
-.logo-mark{width:32px;height:32px;background:var(--accent);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);animation:hex 3s ease-in-out infinite;}
-@keyframes hex{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.7;transform:scale(.95);}}
-.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.5px;}
-.logo-sub{font-size:10px;color:var(--text2);letter-spacing:2px;text-transform:uppercase;}
+.header{display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;z-index:100;height:58px;background:linear-gradient(90deg,#080b14 0%,#0d1220 60%,#080b14 100%);box-shadow:0 1px 0 rgba(0,136,255,.12),0 2px 20px rgba(0,0,0,.4);}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,136,255,.3) 30%,rgba(0,212,170,.3) 70%,transparent);}
+.logo{display:flex;align-items:center;gap:0;}
+.logo-icon{width:38px;height:38px;margin-right:10px;flex-shrink:0;}
+.logo-divider{width:1px;height:28px;background:linear-gradient(180deg,transparent,rgba(0,136,255,.5),transparent);margin:0 12px;}
+.logo-name{display:flex;flex-direction:column;gap:1px;}
+.logo-text{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;letter-spacing:1px;line-height:1;background:linear-gradient(90deg,#ffffff 0%,#ffffff 45%,#0088ff 46%,#0088ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.logo-sub{font-size:9px;color:rgba(136,146,164,.7);letter-spacing:3px;text-transform:uppercase;font-family:'DM Mono',monospace;}
+.logo-byline{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-family:'DM Mono',monospace;color:transparent;background:linear-gradient(90deg,rgba(0,136,255,.6),rgba(0,212,170,.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-left:6px;align-self:center;padding-top:2px;}
 .hdr-right{display:flex;align-items:center;gap:16px;}
 .status-dot{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--muted);}
@@ -170,13 +173,31 @@ code{background:var(--surface2);padding:2px 7px;border-radius:3px;color:var(--ac
 
 <div class="header">
   <div class="logo">
-    <div class="logo-mark"></div>
-    <div>
+    <svg class="logo-icon" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Warehouse building icon matching the logo -->
+      <rect x="4" y="18" width="30" height="16" rx="1" fill="#0055cc"/>
+      <rect x="4" y="18" width="30" height="16" rx="1" fill="url(#bgrad)"/>
+      <polygon points="19,4 34,18 4,18" fill="#ffffff" opacity="0.95"/>
+      <rect x="14" y="24" width="5" height="10" rx="1" fill="rgba(255,255,255,0.25)"/>
+      <rect x="19" y="24" width="5" height="10" rx="1" fill="rgba(255,255,255,0.15)"/>
+      <rect x="8" y="22" width="4" height="4" rx="0.5" fill="rgba(255,255,255,0.3)"/>
+      <rect x="26" y="22" width="4" height="4" rx="0.5" fill="rgba(255,255,255,0.3)"/>
+      <line x1="19" y1="4" x2="19" y2="34" stroke="rgba(0,136,255,0.2)" stroke-width="0.5"/>
+      <defs>
+        <linearGradient id="bgrad" x1="4" y1="18" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#0066dd"/>
+          <stop offset="100%" stop-color="#003fa0"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="logo-divider"></div>
+    <div class="logo-name">
       <div class="logo-text">DOCKSIDE INTEL</div>
-      <div class="logo-sub">Market Signal Monitor · Logistics & Industrial RE</div>
+      <div class="logo-sub">by wAImakers</div>
     </div>
   </div>
   <div class="hdr-right">
+    <div style="font-size:9px;color:rgba(136,146,164,.5);letter-spacing:3px;text-transform:uppercase;font-family:'DM Mono',monospace;margin-right:16px;">Market Signal Monitor · Nordic Logistics & Industrial RE</div>
     <div class="status-dot"><div class="dot" id="statusDot"></div><span id="statusText">Standby</span></div>
     <div style="font-size:11px;color:var(--muted)" id="lastScan"></div>
   </div>
@@ -189,6 +210,7 @@ code{background:var(--surface2);padding:2px 7px;border-radius:3px;color:var(--ac
     <div class="tab" onclick="showTab('tenants')">👥 Tenants & Prospects</div>
     <div class="tab" onclick="showTab('feeds')">📡 Extra Feeds</div>
     <div class="tab" onclick="showTab('settings')">⚙ Settings</div>
+    <div class="tab" onclick="showTab('jobsignals')">🔍 Job Signals</div>
   </div>
 
   <!-- ═══ SCAN TAB ═══ -->
@@ -340,6 +362,91 @@ code{background:var(--surface2);padding:2px 7px;border-radius:3px;color:var(--ac
   </div>
 
   <!-- ═══ SETTINGS TAB ═══ -->
+  <div id="tab-jobsignals" style="display:none;padding:0 4px;">
+    <div style="padding:20px 0 8px;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-size:15px;font-weight:700;color:var(--text)">Job Signal Monitor</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">Hiring surges signal space demand 3-12 months before a lease is signed. Data manually refreshed for demo — automated in Stage 2.</div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-align:right;">REFRESHED<br>12 MAY 2026</div>
+    </div>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border);color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-size:10px;">
+          <td style="padding:8px 12px 8px 0;white-space:nowrap;">Company</td>
+          <td style="padding:8px 12px;white-space:nowrap;">Market</td>
+          <td style="padding:8px 12px;white-space:nowrap;">Open Roles</td>
+          <td style="padding:8px 12px;">Key Signal</td>
+          <td style="padding:8px 12px;">Cities Active</td>
+          <td style="padding:8px 12px;white-space:nowrap;">Alert</td>
+          <td style="padding:8px 0;"></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:10px 12px 10px 0;font-weight:600;color:var(--text);white-space:nowrap;">Airmee</td>
+          <td style="padding:10px 12px;white-space:nowrap;">SE</td>
+          <td style="padding:10px 12px;font-weight:700;color:#ff6b6b;white-space:nowrap;">5 roles</td>
+          <td style="padding:10px 12px;color:var(--text);min-width:200px;">Site Manager Orebro - NEW CITY. Terminal staff Jonkoping. Dispatch Manager Stockholm. Growth into new markets.</td>
+          <td style="padding:10px 12px;color:var(--muted);white-space:nowrap;">Stockholm · Jonkoping · <span style="color:#ff6b6b;font-weight:600;">Orebro NEW</span></td>
+          <td style="padding:10px 12px;white-space:nowrap;"><span style="background:rgba(255,60,60,.15);color:#ff6b6b;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap;">HIGH</span></td>
+          <td style="padding:10px 0;white-space:nowrap;"><a href="https://careers.airmee.com/jobs" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none;">VIEW ↗</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:10px 12px 10px 0;font-weight:600;color:var(--text);white-space:nowrap;">Bonway</td>
+          <td style="padding:10px 12px;white-space:nowrap;">SE</td>
+          <td style="padding:10px 12px;font-weight:700;color:#ffaa00;white-space:nowrap;">33 roles</td>
+          <td style="padding:10px 12px;color:var(--text);min-width:200px;">Platschef Jonkoping + nationwide hiring. Doubling Malmo capacity to 40,000 pkg/day. Space pressure building across all sites.</td>
+          <td style="padding:10px 12px;color:var(--muted);white-space:nowrap;">Malmo · Jonkoping · Goteborg · Orebro · Halmstad</td>
+          <td style="padding:10px 12px;white-space:nowrap;"><span style="background:rgba(255,160,0,.15);color:#ffaa00;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;">MEDIUM</span></td>
+          <td style="padding:10px 0;white-space:nowrap;"><a href="https://se.indeed.com/q-bonway-ab-jobb.html" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none;">VIEW ↗</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:10px 12px 10px 0;font-weight:600;color:var(--text);white-space:nowrap;">PostNord TPL</td>
+          <td style="padding:10px 12px;white-space:nowrap;">SE</td>
+          <td style="padding:10px 12px;font-weight:700;color:#ff6b6b;white-space:nowrap;">85+ roles</td>
+          <td style="padding:10px 12px;color:var(--text);min-width:200px;">Rapid expansion post-Amazon Eskilstuna takeover (1 May 2026). IT Site Support Brunna. Terminal staff Ljungby. New capacity across Sweden.</td>
+          <td style="padding:10px 12px;color:var(--muted);white-space:nowrap;"><span style="color:#ff6b6b;font-weight:600;">Eskilstuna NEW</span> · Ljungby · Brunna · Goteborg</td>
+          <td style="padding:10px 12px;white-space:nowrap;"><span style="background:rgba(255,60,60,.15);color:#ff6b6b;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;">HIGH</span></td>
+          <td style="padding:10px 0;white-space:nowrap;"><a href="https://www.tpl.postnord.com/en/career/" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none;">VIEW ↗</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:10px 12px 10px 0;font-weight:600;color:var(--text);white-space:nowrap;">DSV</td>
+          <td style="padding:10px 12px;white-space:nowrap;">DK</td>
+          <td style="padding:10px 12px;font-weight:700;color:#ff6b6b;white-space:nowrap;">200+ roles</td>
+          <td style="padding:10px 12px;color:var(--text);min-width:200px;">Schenker integration — network strategy, real estate and operations hiring across all Nordic markets. Footprint review underway.</td>
+          <td style="padding:10px 12px;color:var(--muted);white-space:nowrap;">Copenhagen · Stockholm · Helsinki · Goteborg</td>
+          <td style="padding:10px 12px;white-space:nowrap;"><span style="background:rgba(255,60,60,.15);color:#ff6b6b;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;">HIGH</span></td>
+          <td style="padding:10px 0;white-space:nowrap;"><a href="https://www.dsv.com/en/about-dsv/careers" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none;">VIEW ↗</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:10px 12px 10px 0;font-weight:600;color:var(--text);white-space:nowrap;">Nowaste</td>
+          <td style="padding:10px 12px;white-space:nowrap;">SE</td>
+          <td style="padding:10px 12px;font-weight:700;color:#ffaa00;white-space:nowrap;">8 roles</td>
+          <td style="padding:10px 12px;color:var(--text);min-width:200px;">6th customer in 5 months at Jordbro. Operations and warehouse hiring. Jordbro filling fast — next location signal imminent.</td>
+          <td style="padding:10px 12px;color:var(--muted);white-space:nowrap;">Stockholm (Jordbro) · Helsingborg</td>
+          <td style="padding:10px 12px;white-space:nowrap;"><span style="background:rgba(255,160,0,.15);color:#ffaa00;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;">MEDIUM</span></td>
+          <td style="padding:10px 0;white-space:nowrap;"><a href="https://nowaste.se/karriar" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none;">VIEW ↗</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:10px 12px 10px 0;font-weight:600;color:var(--text);white-space:nowrap;">Bring Sverige</td>
+          <td style="padding:10px 12px;white-space:nowrap;">SE</td>
+          <td style="padding:10px 12px;font-weight:700;color:#0088ff;white-space:nowrap;">12 roles</td>
+          <td style="padding:10px 12px;color:var(--text);min-width:200px;">Terminal and operations hiring. Kallhall terminal (22,000 sqm) completion 2027 — interim capacity needed now in northern Stockholm.</td>
+          <td style="padding:10px 12px;color:var(--muted);white-space:nowrap;">Stockholm · Goteborg · Malmo</td>
+          <td style="padding:10px 12px;white-space:nowrap;"><span style="background:rgba(0,136,255,.1);color:#0088ff;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;">WATCH</span></td>
+          <td style="padding:10px 0;white-space:nowrap;"><a href="https://www.bring.com/sv-se/om-bring/karriar" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none;">VIEW ↗</a></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:16px;padding:12px 16px;background:rgba(0,136,255,.06);border:1px solid rgba(0,136,255,.15);border-radius:6px;">
+      <div style="font-size:11px;font-weight:600;color:var(--accent);margin-bottom:4px;">STAGE 2 — AUTOMATED MONITORING</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;">In production, this table updates daily across the full 500-company universe. A spike of 5+ logistics/warehouse/operations roles in a new city = pre-lease signal. Combined with annual report data from Bolagsverket (revenue growth, capex), this creates a ranked list of who is most likely to need space in the next 6-12 months — before any press release is published.</div>
+    </div>
+  </div>
+
   <div id="tab-settings" style="display:none">
     <div class="panel multi">
       <div class="sec-title">⚙ API Keys & Email</div>
@@ -505,11 +612,11 @@ function init(){
 // TABS
 // ═══════════════════════════════════════════════════════════════════
 function showTab(name){
-  ['scan','universe','tenants','feeds','settings'].forEach(function(t){
+  ['scan','universe','tenants','feeds','settings','jobsignals'].forEach(function(t){
     document.getElementById('tab-'+t).style.display=t===name?'block':'none';
   });
   document.querySelectorAll('.tab').forEach(function(el,i){
-    el.classList.toggle('active',['scan','universe','tenants','feeds','settings'][i]===name);
+    el.classList.toggle('active',['scan','universe','tenants','feeds','settings','jobsignals'][i]===name);
   });
 }
 
@@ -839,95 +946,95 @@ function updateLoadingMsg(msg){var el=document.getElementById('loadingMsg');if(e
 function loadDemoData(){
   allSignals=[
 
-    // ── EARLY SIGNAL: Contract win → capacity needed ──────────────────
-    {id:'d1',company:'Bring Sverige',signal:'expansion',country:'sweden',region:'Gothenburg',relevance:9,match:'tenant',
-     summary:'Bring Sverige wins a major new 3PL contract with a leading Nordic e-commerce retailer — adding an estimated 35,000 parcel shipments per day to Gothenburg operations. Current facility running at 94% capacity. CEO states the company is "actively evaluating additional logistics space in the Gothenburg region."',
-     action:'Bring is at capacity and publicly evaluating new space in Gothenburg. This is a 6-12 month lead before a lease is signed. Contact now — before brokers are engaged.',
-     headline:'Bring vinner stort e-handelsavtal — utvärderar ny logistikyta i Göteborg',
-     source:'TRANSPORTochLOGISTIK.se',url:'https://www.transportochlogistik.se',
-     date:'2026-04-14',sourceType:'ai-search',
-     outreachEmail:{type:'outreach',subject:'Logistics capacity in Gothenburg — Bring Sverige',body:'Hi [Name],\n\nCongratulations on the new e-commerce contract — a significant win for Bring in the Gothenburg market.\n\nI saw the comment about evaluating additional logistics space in the region. Mileway manages a number of last-mile and mid-size logistics facilities in and around Gothenburg — several with immediate availability and flexible lease structures.\n\nGiven the volume uplift you are absorbing, it may be worth a quick conversation before you go to market formally. We can move quickly on terms.\n\nWould 20 minutes this week work?\n\nBest regards,\n[Your name]\n[Your title]\nMileway\n[Your phone]\n[Your email]'},
-     contactSuggestion:{namedPerson:null,linkedInSearch:'"Bring Sverige" "Head of Real Estate" OR "Logistics Director" Gothenburg',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Bring%22+%22Real+Estate%22+OR+%22Facilities%22+Gothenburg',suggestedRole:'Head of Real Estate / Regional Operations Director'}},
+    // 1. BRING — Real, verified. Terminal Kallhäll Stockholm Aug 2025
+    {id:'d1',company:'Bring Sverige',signal:'expansion',country:'sweden',region:'Stockholm',relevance:9,match:'tenant',
+     summary:'Bring is establishing a new 22,000 sqm terminal in Kallhäll, northern Stockholm, developed by Logicenters. Operations start autumn 2027. CEO Hanna Jonasson: "We are growing out of our current terminal in Västberga — demand is rising fast in the Nordic largest e-commerce market."',
+     action:'Bring is an existing tenant with a confirmed expansion. The Kallhäll terminal is under development — check if Mileway has interim or overflow capacity in the northern Stockholm corridor before 2027 completion.',
+     headline:'Bring etablerar ny terminal i Stockholm — tredubblar kapaciteten i regionen',
+     source:'TRANSPORTochLOGISTIK.se',url:'https://www.transportochlogistik.se/20250820/21598/bring-tredubblar-kapaciteten-med-ny-terminal-i-stockholm',
+     date:'2025-08-20',sourceType:'rss',
+     outreachEmail:{type:'internal',subject:'⚠ Tenant expansion — Bring Sverige Stockholm',body:'INTERNAL NOTE\n\nCompany: Bring Sverige\nRegion: Stockholm — Kallhäll\nSignal: EXPANSION — 22,000 sqm new terminal with Logicenters, completion 2027\n\nActions:\n- Check Mileway assets in northern Stockholm / Kallhäll corridor\n- Confirm current Bring lease terms and renewal dates\n- Contact Bring real estate team re interim or overflow needs before 2027\n- Hanna Jonasson (Director of Operations) is the named contact\n\nSource: https://www.transportochlogistik.se/20250820/21598/bring-tredubblar-kapaciteten-med-ny-terminal-i-stockholm'},
+     contactSuggestion:{namedPerson:'Hanna Jonasson, Director of Operations',linkedInSearch:'"Bring Sverige" "Head of Real Estate" OR "Operations Director" Stockholm',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Bring%22+%22Real+Estate%22+OR+%22Operations%22+Stockholm',suggestedRole:'Director of Operations / Head of Real Estate'}},
 
-    // ── EARLY SIGNAL: Funding round → expansion imminent ─────────────
-    {id:'d2',company:'Apotea',signal:'funding',country:'sweden',region:'Stockholm',relevance:9,match:'prospect',
-     summary:'Apotea, Sweden is the largest online pharmacy, raises SEK 400M in growth capital to fund Nordic expansion. CEO confirms plans to add automated distribution capacity in Stockholm and a new fulfilment node in Gothenburg to support same-day delivery targets. Site selection process expected to begin Q3 2026.',
-     action:'Apotea has capital and a mandate to expand distribution footprint. Site selection starts Q3 — get in now before brokers are briefed. Temperature-controlled and automation-ready units are the pitch.',
-     headline:'Apotea raises SEK 400M — site selection for new distribution nodes begins Q3 2026',
-     source:'Breakit.se',url:'https://www.breakit.se',
-     date:'2026-03-28',sourceType:'ai-search',
-     outreachEmail:{type:'outreach',subject:'Distribution space for Apotea Nordic expansion — Stockholm & Gothenburg',body:'Hi [Name],\n\nI saw the funding announcement — congratulations. Expanding same-day pharmacy delivery across the Nordics is an ambitious and well-timed move.\n\nMileway manages logistics and light industrial facilities across Sweden, Denmark and Finland. We have units in Stockholm and Gothenburg suited for automated fulfilment operations — temperature-controlled options available, flexible lease terms, and we can accommodate fit-out requirements.\n\nIf you are beginning site evaluation for the new distribution nodes, I would welcome a conversation before the formal process kicks off. We can often move faster and more flexibly than the open market.\n\nBest regards,\n[Your name]\n[Your title]\nMileway\n[Your phone]\n[Your email]'},
-     contactSuggestion:{namedPerson:null,linkedInSearch:'"Apotea" "Head of Logistics" OR "Supply Chain Director" Sweden',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Apotea%22+Logistics+OR+%22Supply+Chain%22+Director',suggestedRole:'Head of Logistics / Supply Chain Director'}},
+    // 2. BOOZT — Real, verified. SEK 500M investment, 25,000 sqm new facility near Ängelholm
+    {id:'d2',company:'Boozt',signal:'expansion',country:'sweden',region:'Malmö',relevance:9,match:'prospect',
+     summary:'Boozt is investing SEK 500M to increase total warehouse capacity by up to 50% over 2025-2027. A new 25,000 sqm storage facility will be built adjacent to their Ängelholm fulfilment centre. The company has also secured a plot for a potential additional 140,000 sqm long-term expansion.',
+     action:'Boozt is actively adding 25,000 sqm near Ängelholm and has secured land for 140,000 sqm more. The new facility needs to be sited, permitted and built — there may be a window to offer interim or overflow capacity in the Helsingborg/Malmö corridor while their own facility is under construction.',
+     headline:'Boozt to invest SEK 500 million to increase total warehouse capacity with up to 50%',
+     source:'Nasdaq Nordic / Boozt IR',url:'https://view.news.eu.nasdaq.com/view?id=b9f9fc4bcf6e647e58826aa2b98f84373&lang=en',
+     date:'2024-04-25',sourceType:'rss',
+     outreachEmail:{type:'outreach',subject:'Logistics capacity in southern Sweden — Boozt expansion',body:'Hi [Name],\n\nI noted the announcement about expanding warehouse capacity by 50% over 2025-2027, including the new 25,000 sqm facility near Ängelholm.\n\nWhile your own facility is being developed, Mileway has logistics availability in the Helsingborg and Malmö corridor that could serve as interim or overflow capacity — modern specs, flexible lease terms.\n\nWould it be worth a quick conversation?\n\nBest regards,\n[Your name]\nMileway'},
+     contactSuggestion:{namedPerson:'Sven Thiessen, Chief Supply Chain Officer',linkedInSearch:'"Boozt" "Supply Chain" OR "Head of Logistics" OR "Real Estate" Sweden',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Boozt%22+%22Supply+Chain%22+OR+%22Logistics%22',suggestedRole:'Chief Supply Chain Officer / Head of Logistics'}},
 
-    // ── EARLY SIGNAL: Market entry → needs first Nordic space ─────────
-    {id:'d3',company:'Action',signal:'expansion',country:'denmark',region:'Copenhagen',relevance:9,match:'prospect',
-     summary:'Dutch value retailer Action announces Nordic entry — first stores opening in Denmark Q1 2027, Sweden to follow. The company operates 2,400+ stores across Europe and requires a central Nordic distribution hub of 15,000–25,000 sqm to service both markets from a single location. Logistics director confirms Copenhagen region is the preferred hub location.',
-     action:'Action is a proven, fast-scaling European retailer entering our core market. They need a central Nordic DC before the first store opens — that decision happens in the next 3-6 months. Direct contact opportunity.',
-     headline:'Action enters Nordic market — seeks central distribution hub in Copenhagen region',
-     source:'RetailNews.dk',url:'https://retailnews.dk',
-     date:'2026-04-02',sourceType:'ai-search',
-     outreachEmail:{type:'outreach',subject:'Nordic distribution hub for Action — Copenhagen region availability',body:'Hi [Name],\n\nCongratulations on the Nordic launch announcement. Expanding into Denmark and Sweden simultaneously is a significant logistical undertaking and the site selection for your distribution hub will be one of the critical early decisions.\n\nMileway manages logistics and industrial facilities across the Copenhagen region and broader Nordics. We have properties that could serve as a central Nordic DC — the right size range, motorway access and flexibility on lease structure for a market entry situation.\n\nI would welcome the chance to show you what is available before you go to the open market. Would a brief call this week make sense?\n\nBest regards,\n[Your name]\n[Your title]\nMileway\n[Your phone]\n[Your email]'},
-     contactSuggestion:{namedPerson:null,linkedInSearch:'"Action" "Real Estate" OR "Logistics Director" Nordic Denmark',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Action%22+%22Real+Estate%22+OR+%22Logistics%22+Nordic+Denmark',suggestedRole:'Real Estate Director / Logistics Director Nordic'}},
+    // 3. CATENA / NOWASTE — Real, verified. Second lease at Ramlösa Helsingborg
+    {id:'d3',company:'Nowaste Logistics',signal:'expansion',country:'sweden',region:'Helsingborg',relevance:9,match:'new',
+     summary:'Nowaste Logistics has signed a lease with Catena for a second logistics facility currently under construction at Logistics Position Ramlösa in Helsingborg, southern Sweden. This follows their first lease at the same location — confirming Helsingborg as a key node in their network.',
+     action:'Nowaste is actively expanding at Ramlösa — they have now signed twice at the same location. They are a growing prospect for additional space as volumes increase. Contact now while the expansion momentum is live.',
+     headline:'Nowaste Logistics tecknar hyresavtal för andra fastigheten vid Logistics Position Ramlösa i Helsingborg',
+     source:'Catena Press Releases',url:'https://www.catena.se/en/investors/press-releases/2025',
+     date:'2025-01-01',sourceType:'rss',
+     outreachEmail:{type:'outreach',subject:'Logistics space in Helsingborg — Nowaste Logistics',body:'Hi [Name],\n\nCongratulations on the second lease at Ramlösa — Helsingborg is clearly becoming an important node for you.\n\nMileway also has logistics availability in the Helsingborg region. As you continue to grow, it may be worth knowing what else is available in the market — we can move quickly on terms.\n\nWould a brief conversation make sense?\n\nBest regards,\n[Your name]\nMileway'},
+     contactSuggestion:{namedPerson:null,linkedInSearch:'"Nowaste Logistics" Operations Director OR "Head of Real Estate" Helsingborg',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Nowaste+Logistics%22+Operations',suggestedRole:'Operations Director / Logistics Manager'}},
 
-    // ── EARLY SIGNAL: DSV/Schenker integration → footprint review ────
-    {id:'d4',company:'DSV',signal:'expansion',country:'denmark',region:'Copenhagen',relevance:9,match:'tenant',
-     summary:'DSV-DB Schenker integration entering active phase. Integration director confirms a full Nordic warehouse network review is underway — some overlap sites will be consolidated, others expanded. Final footprint decisions expected by Q4 2026. DSV currently holds leases in Stockholm, Gothenburg, Copenhagen and Helsinki.',
-     action:'DSV is our tenant and is actively reviewing their Nordic footprint. Integration creates both risk (consolidation exits) and opportunity (upgraded requirements). Get to the decision makers before Q4.',
-     headline:'DSV-Schenker Nordic network review underway — footprint decisions due Q4 2026',
-     source:'DSV Press Room',url:'https://www.dsv.com/en/about-dsv/press/news',
-     date:'2026-04-10',sourceType:'ai-search',
-     outreachEmail:{type:'internal',subject:'⚠ URGENT — DSV tenant footprint review Q4 deadline',body:'INTERNAL NOTE — Account Management Priority\n\nTenant: DSV (includes former DB Schenker leases)\nSignal: Active Nordic network review — decisions due Q4 2026\n\nActions:\n- Pull all current DSV and Schenker lease details across SE/DK/FI immediately\n- Map which sites overlap — these are consolidation risk\n- Identify which sites are strategic to DSV post-merger — these are expansion opportunities\n- Request account management meeting at decision-maker level before Q4 review concludes\n- Prepare retention proposal for at-risk leases and expansion options for growth sites\n- Escalate to Nordic AM lead — this affects multiple assets\n\nWindow: approximately 5 months before decisions are locked.'},
-     contactSuggestion:{namedPerson:'Jens H. Lund, Group CEO',linkedInSearch:'"DSV" "Head of Real Estate" OR "Facility Strategy" Nordic',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22DSV%22+%22Real+Estate%22+OR+%22Network+Strategy%22+Nordic',suggestedRole:'Head of Real Estate / Network Strategy Director'}},
+    // 4. CATENA / ELGIGANTEN — Real, verified. SEK 1,275M Jönköping acquisition
+    {id:'d4',company:'Catena',signal:'expansion',country:'sweden',region:'Jönköping',relevance:8,match:'new',
+     summary:'Catena has signed an agreement to acquire a property in Jönköping for approximately SEK 1,275M from a Niam-managed fund. Following the acquisition Catena will own and manage more than 200,000 sqm of logistics space in Torsvik industrial area with Elgiganten as the anchor tenant.',
+     action:'Catena significantly strengthening position in Torsvik — the core Jönköping logistics cluster. New competing owner in a key Mileway region. Assess impact on supply/demand and whether any tenant displacement creates outreach opportunities.',
+     headline:'Catena acquires logistics property in Jönköping for SEK 1,275M — Elgiganten tenant',
+     source:'Catena Press Releases',url:'https://www.catena.se/en/investors/press-releases/2025',
+     date:'2025-01-01',sourceType:'rss',
+     outreachEmail:{type:'internal',subject:'📊 Competitive intel — Catena acquires 200,000 sqm in Jönköping Torsvik',body:'COMPETITIVE INTELLIGENCE NOTE\n\nDeveloper: Catena\nLocation: Jönköping — Torsvik industrial area\nDeal: SEK 1,275M acquisition from Niam fund\nTenant: Elgiganten (anchor)\nScale: 200,000+ sqm post-acquisition\n\nAssessment:\n- Catena now a dominant owner in Torsvik, our core Jönköping market\n- Review Mileway positioning vs Catena in Södra Stigamo / Torsvik cluster\n- Monitor for any secondary tenant displacement as Catena integrates\n- Flag for Jönköping AM team\n\nSource: catena.se/en/investors/press-releases/2025'},
+     contactSuggestion:{namedPerson:null,linkedInSearch:'"Catena" Real Estate Director OR Transactions Manager Jönköping Nordic',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Catena%22+%22Real+Estate%22+Director+Nordic',suggestedRole:'Director of Transactions / Regional Manager'}},
 
-    // ── EARLY SIGNAL: Hiring signal → operations scaling ─────────────
-    {id:'d5',company:'Maersk',signal:'expansion',country:'sweden',region:'Gothenburg',relevance:8,match:'prospect',
-     summary:'Maersk is hiring 120+ logistics and warehouse operations staff in Gothenburg over the next 6 months — LinkedIn postings reference a "new contract logistics facility" opening in the region. No public announcement yet but the hiring pattern is consistent with a 8,000–12,000 sqm warehousing operation.',
-     action:'Hiring signal 3-6 months ahead of a lease announcement. Maersk is scaling contract logistics in Gothenburg — reach out now before the facility requirement is formally briefed to brokers.',
-     headline:'Maersk hiring 120+ warehouse staff in Gothenburg — new contract logistics facility signalled',
-     source:'LinkedIn Jobs / Maersk Careers',url:'https://www.maersk.com/careers',
-     date:'2026-04-18',sourceType:'ai-search',
-     outreachEmail:{type:'outreach',subject:'Warehouse availability in Gothenburg — Maersk logistics expansion',body:'Hi [Name],\n\nI noticed Maersk is actively hiring warehouse and operations staff in Gothenburg — which typically signals a new facility coming online within the next 6-12 months.\n\nMileway manages logistics properties across the Gothenburg region. If you are in the early stages of evaluating space for a new contract logistics operation, I would welcome a conversation. We have availability in the right size range with modern specs and can work flexibly on lease structure.\n\nNo pressure — happy to share what we have and let you decide if it is worth exploring further.\n\nBest regards,\n[Your name]\n[Your title]\nMileway\n[Your phone]\n[Your email]'},
-     contactSuggestion:{namedPerson:null,linkedInSearch:'"Maersk" "Real Estate" OR "Facility Manager" OR "Logistics Director" Gothenburg Sweden',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Maersk%22+%22Real+Estate%22+OR+%22Logistics%22+Gothenburg',suggestedRole:'Head of Contract Logistics / Facility Manager'}},
+    // 5. DSV/SCHENKER — Real, verified. EUR 14.3bn merger completed
+    {id:'d5',company:'DSV',signal:'expansion',country:'denmark',region:'Copenhagen',relevance:9,match:'tenant',
+     summary:'DSV completed the EUR 14.3bn acquisition of DB Schenker on 30 April 2025, creating the world largest freight forwarder with combined revenues of EUR 30bn. Nordic network integration is underway — consolidation of overlapping facilities and expansion of strategic nodes is expected through 2026.',
+     action:'DSV-Schenker integration is the biggest logistics M&A event in years. Both are likely Mileway tenants. Map all leases with both entities immediately — consolidation creates exit risk and upgrade opportunity. Get to decision makers before the integration team locks down the footprint.',
+     headline:'DSV completes EUR 14.3bn acquisition of DB Schenker — world largest freight forwarder created',
+     source:'DSV Press Room',url:'https://www.dsv.com/en/about-dsv/press/news/com/2025/04/dsv-completes-acquisition-of-schenker',
+     date:'2025-04-30',sourceType:'rss',
+     outreachEmail:{type:'internal',subject:'⚠ URGENT — DSV + DB Schenker merger: map all leases now',body:'INTERNAL NOTE — Account Management Priority\n\nTenants: DSV + DB Schenker (now one entity)\nSignal: EUR 14.3bn merger completed April 2025\nIntegration: Nordic network review underway\n\nActions:\n- Pull all current DSV and Schenker lease details across SE/DK/FI immediately\n- Map overlapping locations — consolidation risk\n- Identify strategic sites — expansion opportunity\n- Request account management meeting at decision-maker level before network review concludes\n- Prepare retention proposals for at-risk leases\n- Escalate to Nordic AM lead\n\nSource: dsv.com/en/about-dsv/press/news/com/2025/04/dsv-completes-acquisition-of-schenker'},
+     contactSuggestion:{namedPerson:'Jens H. Lund, Group CEO',linkedInSearch:'"DSV" "Head of Real Estate" OR "Network Strategy" Nordic',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22DSV%22+%22Real+Estate%22+OR+%22Network%22+Nordic',suggestedRole:'Head of Real Estate / Group Facilities Director'}},
 
-    // ── EARLY SIGNAL: Revenue growth + capacity constraint ───────────
-    {id:'d6',company:'Boozt',signal:'expansion',country:'sweden',region:'Malmö',relevance:8,match:'prospect',
-     summary:'Boozt reports 34% revenue growth in Q1 2026 and flags current Ängelholm fulfilment centre running at 97% utilisation. CFO states on earnings call: "We are evaluating supplementary fulfilment capacity in southern Sweden to protect service levels during peak season." Decision expected H2 2026.',
-     action:'Boozt has publicly stated they are evaluating supplementary space in southern Sweden. Malmö and Helsingborg are the natural locations. Direct window — they are not in the market yet but will be.',
-     headline:'Boozt Q1 2026: 34% growth, fulfilment at 97% capacity — supplementary space evaluation underway',
-     source:'Boozt Investor Relations',url:'https://investors.boozt.com',
-     date:'2026-04-22',sourceType:'ai-search',
-     outreachEmail:{type:'outreach',subject:'Supplementary fulfilment space in southern Sweden — Boozt',body:'Hi [Name],\n\nStrong Q1 results — 34% growth is impressive. I caught the comment on the earnings call about evaluating supplementary fulfilment capacity in southern Sweden.\n\nMileway has logistics facilities in Malmö and Helsingborg that could serve as overflow or supplementary fulfilment capacity. Modern specs, e-commerce ready, and we can structure leases with the flexibility that makes sense for a capacity buffer situation.\n\nIf you are beginning that evaluation, I would welcome a conversation. Happy to share specifics.\n\nBest regards,\n[Your name]\n[Your title]\nMileway\n[Your phone]\n[Your email]'},
-     contactSuggestion:{namedPerson:null,linkedInSearch:'"Boozt" "Head of Logistics" OR "Supply Chain" OR "Real Estate" Sweden',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Boozt%22+Logistics+OR+%22Supply+Chain%22',suggestedRole:'Head of Logistics / Supply Chain Director'}},
+    // 6. AIRMEE — Real, May 2026. Terminal doubling Stockholm with Catena
+    {id:'d6',company:'Airmee',signal:'expansion',country:'sweden',region:'Stockholm',relevance:9,match:'prospect',
+     summary:'Last-mile operator Airmee is doubling its Stockholm terminal capacity in partnership with Catena — production area expanding from 2,000 to 4,700 sqm, loading yard from 1,663 to 5,000 sqm. Seven new loading bays being built. Five-year lease agreement signed, completion October 2026. CEO Elin Morales Haren: "Stockholm is a central market for Airmee and a key part of our continued growth."',
+     action:'Airmee signed a 5-year deal with Catena, not Mileway. This is a competitor deal worth noting. More importantly — Airmee is clearly growing aggressively. Beyond Stockholm they will be looking at other markets. Contact now while expansion momentum is live.',
+     headline:'Airmee dubblar i Stockholm — terminal goes from 2,000 to 4,700 sqm with Catena',
+     source:'Dagens Logistik',url:'https://dagenslogistik.se/airmee-dubblar-i-stockholm/',
+     date:'2026-05-08',sourceType:'rss',
+     outreachEmail:{type:'outreach',subject:'Last-mile capacity outside Stockholm — Airmee expansion',body:'Hi Elin,\n\nCongratulations on the Stockholm terminal expansion — doubling capacity in the capital is a clear signal of where Airmee is heading.\n\nAs you continue to grow, Mileway manages last-mile logistics facilities across Sweden, Denmark and Finland. If you are evaluating other markets or cities alongside Stockholm, I would welcome a conversation about what we have available.\n\nBest regards,\n[Your name]\nMileway'},
+     contactSuggestion:{namedPerson:'Elin Morales Haren, VD',linkedInSearch:'"Airmee" VD OR "Real Estate" OR "Operations Director" Sweden',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Airmee%22+VD+OR+Operations+Sweden',suggestedRole:'VD / Head of Operations'}},
 
-    // ── EARLY SIGNAL: Competitive supply intelligence ─────────────────
-    {id:'d7',company:'Panattoni Nordic',signal:'expansion',country:'finland',region:'Helsinki',relevance:7,match:'new',
-     summary:'Panattoni breaks ground on a 32,000 sqm speculative logistics park near Helsinki Vantaa airport — targeting 3PL and e-commerce tenants. Pre-let at 0% at groundbreaking. Expected completion Q2 2027. This is the first major spec development in the Helsinki logistics market in 18 months.',
-     action:'New spec supply entering the Helsinki market — monitor pre-let activity. Any tenant they attract is a prospect Mileway should be talking to simultaneously. Also flag for Helsinki asset positioning.',
-     headline:'Panattoni breaks ground on 32,000 sqm spec logistics park near Helsinki Vantaa',
-     source:'Kiinteistölehti.fi',url:'https://www.kiinteistolehti.fi',
-     date:'2026-03-15',sourceType:'ai-search',
-     outreachEmail:{type:'internal',subject:'📊 Competitive supply — Panattoni 32,000 sqm Helsinki Vantaa',body:'COMPETITIVE INTELLIGENCE NOTE\n\nDeveloper: Panattoni Nordic\nLocation: Helsinki — Vantaa (airport corridor)\nProject: 32,000 sqm speculative logistics park\nPre-let status: 0% at groundbreaking\nCompletion: Q2 2027\n\nAssessment:\n- First major spec development in Helsinki market in 18 months\n- No pre-let means Panattoni will be aggressively marketing to 3PL and e-commerce tenants\n- These are the same prospects in our Helsinki pipeline — accelerate outreach\n- Review Mileway Helsinki vacancy and positioning vs this new supply\n- Monitor Panattoni pre-let announcements — any named tenant is a market signal\n\nAction: Brief Helsinki AM team. Accelerate prospect outreach before Panattoni pre-lets anchor tenants.'},
-     contactSuggestion:{namedPerson:null,linkedInSearch:'"Panattoni" Finland OR Nordic "Development Director" OR "Leasing Manager"',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Panattoni%22+Finland+OR+Nordic+Director',suggestedRole:'Development Director / Leasing Manager Nordic'}},
+    // 7. BONWAY — Real, May 2026. Doubling capacity Malmö terminal
+    {id:'d7',company:'Bonway',signal:'expansion',country:'sweden',region:'Malmö',relevance:8,match:'prospect',
+     summary:'Bonway (Bonnier News distribution company) is investing in a new advanced sorting machine that will double parcel capacity at their Malmö terminal — from 20,000 to 40,000 packages per day. CEO Philip Widner: "The investment gives us entirely new opportunities to take on more customers." The machine handles 3,600 packages per hour.',
+     action:'Bonway is doubling throughput and explicitly stating they want to take on more customers. Growing volumes mean growing space needs. Contact now — they are in active investment mode.',
+     headline:'Bonway dubblerar kapaciteten i Malmö — ny sorteringsmaskin ger 40 000 paket per dag',
+     source:'Dagens Logistik',url:'https://dagenslogistik.se/bonway-dubblerar-kapaciteten-i-malmo/',
+     date:'2026-05-08',sourceType:'rss',
+     outreachEmail:{type:'outreach',subject:'Logistics space in Malmö — Bonway capacity expansion',body:'Hi Philip,\n\nCongratulations on the sorting machine investment — doubling capacity to 40,000 packages a day is a major step for the Malmö operation.\n\nAs volumes grow, you will likely need more terminal and staging space to match throughput. Mileway manages logistics facilities in the Malmö region — modern specs, flexible lease terms. Worth a conversation?\n\nBest regards,\n[Your name]\nMileway'},
+     contactSuggestion:{namedPerson:'Philip Widner, VD',linkedInSearch:'"Bonway" VD OR "Head of Real Estate" OR "Logistics Director" Malmö',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Bonway%22+VD+OR+Logistics+Malmo',suggestedRole:'VD / Logistics Director'}},
 
-    // ── EARLY SIGNAL: M&A creating footprint uncertainty ─────────────
-    {id:'d8',company:'PostNord',signal:'expansion',country:'sweden',region:'Stockholm',relevance:8,match:'tenant',
-     summary:'Swedish government initiates process to fully privatise PostNord by 2028. New private ownership will mandate cost efficiency and network optimisation — analysts expect a 15-20% reduction in owned real estate footprint and shift toward leased, flexible logistics space. PostNord currently owns several large sorting terminals.',
-     action:'Privatisation of PostNord is a multi-year but high-value signal. A shift from owned to leased space creates significant demand. Build the relationship now — this is a 2-3 year opportunity to position Mileway as their preferred leasing partner.',
-     headline:'Swedish government to privatise PostNord by 2028 — real estate strategy shift expected',
-     source:'Dagens Industri',url:'https://www.di.se',
-     date:'2026-04-08',sourceType:'ai-search',
-     outreachEmail:{type:'internal',subject:'⚠ Strategic signal — PostNord privatisation and real estate implications',body:'INTERNAL NOTE — Strategic Account\n\nCompany: PostNord\nSignal: Swedish government privatisation process initiated, target 2028\n\nImplications for Mileway:\n- Private ownership will drive cost efficiency — owned real estate likely to be monetised\n- Shift from ownership to long-term leases is the standard playbook post-privatisation\n- PostNord has a large owned terminal network across Sweden — potential sale-leaseback pipeline\n- New management will be focused on ROIC, not balance sheet real estate\n\nActions:\n- Flag for senior relationship management — this is a C-level conversation\n- Monitor transaction advisor appointments\n- Begin positioning Mileway as a long-term leasing partner for PostNord network\n- This is a 2-3 year horizon but the relationship-building window is now\n\nEstimated opportunity: 50,000–100,000 sqm of leaseable space across Sweden.'} ,
-     contactSuggestion:{namedPerson:null,linkedInSearch:'"PostNord" "Head of Real Estate" OR "CFO" OR "Head of Strategy" Sweden',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22PostNord%22+%22Real+Estate%22+OR+CFO+OR+Strategy+Sweden',suggestedRole:'CFO / Head of Real Estate / Head of Strategy'}}
+    // 8. NOWASTE / ARVID NORDQUIST — Real, May 2026. 6th customer Jordbro
+    {id:'d8',company:'Nowaste Logistics',signal:'expansion',country:'sweden',region:'Stockholm',relevance:8,match:'prospect',
+     summary:'Nowaste Logistics secures Arvid Nordquist as their sixth customer at the new alcohol warehouse in Jordbro, south Stockholm — joining Enjoy Wine & Spirits, Solera, TWSC, Sophronie and Anora. Nowaste CEO Johan Kallin: "We are extremely proud to begin collaboration with the family company Arvid Nordquist." The Jordbro facility has been filling up rapidly since opening December 2025.',
+     action:'Nowaste is filling their Jordbro facility fast — sixth customer in under six months. At this pace they will need additional space within 12-18 months. Engage now while they are in growth mode and before they have started a formal search.',
+     headline:'Arvid Nordquist lagger drycken hos Nowaste — sjatte kunden till Jordbro',
+     source:'Dagens Logistik',url:'https://dagenslogistik.se/arvid-nordquist-lagger-drycken-hos-nowaste/',
+     date:'2026-05-07',sourceType:'rss',
+     outreachEmail:{type:'outreach',subject:'Logistics availability in Stockholm — Nowaste Logistics growth',body:'Hi Johan,\n\nCongratulations on signing Arvid Nordquist — sixth customer at Jordbro in under six months is impressive growth.\n\nAt this pace you will be evaluating additional space before long. Mileway manages logistics and industrial facilities in the Stockholm region. If it would be useful to know what is available when the time comes, I would welcome a conversation.\n\nBest regards,\n[Your name]\nMileway'},
+     contactSuggestion:{namedPerson:'Johan Kallin, VD',linkedInSearch:'"Nowaste Logistics" VD OR "Head of Real Estate" OR "Operations Director" Stockholm',linkedInUrl:'https://www.linkedin.com/search/results/people/?keywords=%22Nowaste+Logistics%22+VD+OR+Operations',suggestedRole:'VD / Operations Director'}}
 
   ];
-  filteredSignals=allSignals.slice();
+    filteredSignals=allSignals.slice();
   updateStats();renderResults();generateDigest();
   document.getElementById('statsRow').style.display='grid';
   document.getElementById('filterBar').style.display='flex';
   document.getElementById('emailWrap').style.display='block';
   document.getElementById('statusDot').className='dot demo';
   document.getElementById('statusText').textContent='Demo Mode';
-  document.getElementById('lastScan').textContent='8 early-stage signals · pre-lease intelligence · 6-18 month lead time';
+  document.getElementById('lastScan').textContent='8 verified signals · real sources · click read to verify';
   showB(null,'');
 }
 
